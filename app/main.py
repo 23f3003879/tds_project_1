@@ -27,9 +27,12 @@ VISION_MODEL = "gpt-4o"
 app = FastAPI()
 chunks, embeddings = None, None
 
+import os
+
 def load_embeddings():
     global chunks, embeddings
-    data = np.load("embeddings.npz", allow_pickle=True)
+    embeddings_path = os.path.join(os.path.dirname(__file__), "embeddings.npz")
+    data = np.load(embeddings_path, allow_pickle=True)
     chunks = data["chunks"]
     embeddings = data["embeddings"]
     print(f"✅ Loaded {len(chunks)} chunks")

@@ -9,7 +9,8 @@ from pydantic import BaseModel
 from typing import Optional
 from dotenv import load_dotenv
 from openai import OpenAI
-from mangum import Mangum
+from app.main import app as handler
+
 
 # === Load environment ===
 load_dotenv()
@@ -24,7 +25,6 @@ LLM_MODEL = "gpt-4o-mini"
 
 # === App & Data ===
 app = FastAPI()
-handler = Mangum(app)
 
 chunks, embeddings = None, None
 def load_embeddings():
