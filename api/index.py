@@ -29,7 +29,8 @@ app = FastAPI()
 chunks, embeddings = None, None
 def load_embeddings():
     global chunks, embeddings
-    data = np.load("embeddings.npz", allow_pickle=True)
+    embeddings_path = os.path.join(os.path.dirname(__file__), "embeddings.npz")
+    data = np.load(embeddings_path, allow_pickle=True)
     chunks = data["chunks"]
     embeddings = data["embeddings"]
 load_embeddings()
